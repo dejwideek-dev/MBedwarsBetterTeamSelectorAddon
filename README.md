@@ -7,3 +7,5 @@ Supported version: 1.8.x-1.19.x
 
 
 **[Discord Support Server](https://discord.gg/P9WjbNyVFH)**
+
+**Collaborator:** [MrEAlderson](https://github.com/MrEAlderson) (MBedwars Author)
