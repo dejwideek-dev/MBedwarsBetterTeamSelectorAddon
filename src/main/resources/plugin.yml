@@ -1,0 +1,8 @@
+name: MBedwarsBetterTeamSelectorAddon
+version: 1.0.0
+api-version: 1.13
+depend: [MBedwars]
+authors:
+  - dejwideek
+  - Marcel Seibel (aka Marcely1199)
+main: pl.dejwideek.teamselector.TeamSelectorPlugin

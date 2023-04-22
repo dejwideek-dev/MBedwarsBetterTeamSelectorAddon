@@ -1,0 +1,137 @@
+#Better Team Selector Addon for MBedwars by dejwideek & Marcel Seibel (aka Marcely1199)
+
+#Permissions
+permissions:
+  reload: "bw.teamselector.reload"
+
+#Messages
+#RGB colors are supported. (1.16+ only)
+messages:
+  #Available placeholder: %permission%
+  no-permission: "&cYou must have permission &4%permission% &cto do this!"
+
+  reloaded: "&eSuccessfully reloaded configuration file!"
+
+  #Available placeholder: %team%
+  joined-to-team: "&eJoined to %team% team"
+
+  already-in-team: "&cYou are already in this team!"
+  team-is-full: "&cThis team is full!"
+
+#Team selector configuration
+team-selector:
+  hide-item-if-one-player-per-team: false
+  templates-enabled: false
+  per-arena-templates-enabled: false
+  default-template:
+    #Menu size for this template
+    size: 36
+    #Available teams: WHITE, ORANGE, PURPLE, RED, BLUE, LIGHT_BLUE,
+    #CYAN, GREEN, YELLOW, PINK, GRAY, LIGHT_GRAY, LIME,
+    #BROWN, BLACK
+    #You can remove teams you don't use in any arena.
+    #Team slots that are not enabled in the arena are automatically skipped.
+    #If you want to arrange team slots for different modes,
+    #use the templates or per-arena-templates configuration
+    slots:
+      WHITE: 9
+      ORANGE: 10
+      PURPLE: 11
+      RED: 12
+      BLUE: 13
+      LIGHT_BLUE: 14
+      CYAN: 15
+      GREEN: 16
+      YELLOW: 17
+      PINK: 19
+      GRAY: 20
+      LIGHT_GRAY: 21
+      BROWN: 22
+      BLACK: 23
+      LIME: 24
+
+  #If u want use this configuration, remove [] and copy this template:
+  #  solo:
+  #    #Menu size for this template
+  #    size: 36
+  #    #Count of teams
+  #    teams: 8
+  #    #Count of players per team
+  #    players-per-team: 1
+  #    #Available teams: WHITE, ORANGE, PURPLE, RED, BLUE, LIGHT_BLUE,
+  #    #CYAN, GREEN, YELLOW, PINK, GRAY, LIGHT_GRAY, LIME,
+  #    #BROWN, BLACK
+  #    #You can remove teams you don't use in any arena.
+  #    #Team slots that are not enabled in the arena are automatically skipped.
+  #    slots:
+  #      RED: 11
+  #      BLUE: 12
+  #      GREEN: 13
+  #      YELLOW: 14
+  #      CYAN: 15
+  #      WHITE: 19
+  #      PINK: 20
+  #      GRAY: 21
+  templates: []
+
+  #If u want use this configuration, remove [] and copy this template:
+  #  arena1:
+  #    #Menu size for this template
+  #    size: 27
+  #    #Available teams: WHITE, ORANGE, PURPLE, RED, BLUE, LIGHT_BLUE,
+  #    #CYAN, GREEN, YELLOW, PINK, GRAY, LIGHT_GRAY, LIME,
+  #    #BROWN, BLACK
+  #    #You can remove teams you don't use in arena.
+  #    #Team slots that are not enabled in the arena are automatically skipped.
+  #    slots:
+  #      LIGHT_BLUE: 11
+  #      PURPLE: 12
+  #      ORANGE: 14
+  #      YELLOW: 15
+  per-arena-templates: []
+
+#Menu configuration
+#RGB colors are supported. (1.16+ only)
+menu:
+  title: "&8Team Selector"
+  #Dyable materials: wool, stained_glass, stained_glass_pane,
+  #terracotta, glazed_terracotta, concrete, candle, bed, carpet,
+  #shulker_box, leather_helmet, leather_chestplate, leather_leggings,
+  #leather_boots
+  material: wool
+  material-data: 0
+  current-team-item-enchant: true
+  fill-empty-slots:
+    enabled: true
+    material: black_stained_glass_pane
+    material-data: 15
+  sound:
+    joined-to-team:
+      enabled: true
+      sound: entity_chicken_egg
+    already-in-team:
+      enabled: true
+      sound: block_anvil_place
+    team-is-full:
+      enabled: true
+      sound: block_anvil_place
+  #Available placeholders: %team%, %players%, %max%
+  # %team% placeholder is REQUIRED!!!!!
+  display-name: "%team% &f(%players%/%max%)"
+  lore:
+    #Available placeholders: %players%, %max%
+    header:
+      - ""
+    player-list-line:
+      enabled: true
+      #Available placeholder: %player%
+      line: "&8- &7%player%"
+      no-players: "&7Nobody"
+    #Available placeholders: %status%, %players%, %max%
+    footer:
+      - ""
+      - "%status%"
+    status:
+      already-in-team: "&cYou are already in this team!"
+      team-is-full: "&cTeam is full!"
+      click-to-join: "&eClick to join!"
