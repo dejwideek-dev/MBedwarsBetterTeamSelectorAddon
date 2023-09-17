@@ -60,7 +60,8 @@ public class InvClickEvent implements Listener {
                     ItemStack item = e.getCurrentItem();
                     for(Team team : arena.getEnabledTeams()) {
                         if(item.getItemMeta().getDisplayName()
-                                .contains(team.getDisplayName())) {
+                                .contains(colorAPI.process(config.getString(
+                                        "menu.team-display-names." + team.name())))) {
                             int playersPerTeam = arena.getPlayersPerTeam();
                             int playersInTeam = arena
                                     .getPlayersInTeam(team).size();
@@ -79,7 +80,8 @@ public class InvClickEvent implements Listener {
                                         arena.setPlayerTeam(p, team);
                                         p.sendMessage(colorAPI.process(joinedMsg
                                                 .replaceAll("%team%",
-                                                        team.getChatColor() + team.getDisplayName())));
+                                                        config.getString("menu.team-display-names."
+                                                                + team.name()))));
                                         if(isJoinedSoundEnabled)
                                             p.playSound(p.getLocation(), XSound.valueOf(
                                                             joinedSound).parseSound(),
@@ -108,7 +110,8 @@ public class InvClickEvent implements Listener {
                                     arena.setPlayerTeam(p, team);
                                     p.sendMessage(colorAPI.process(joinedMsg
                                             .replaceAll("%team%",
-                                                    team.getChatColor() + team.getDisplayName())));
+                                                    config.getString("menu.team-display-names."
+                                                            + team.name()))));
                                     if(isJoinedSoundEnabled)
                                         p.playSound(p.getLocation(), XSound.valueOf(
                                                         joinedSound).parseSound(),

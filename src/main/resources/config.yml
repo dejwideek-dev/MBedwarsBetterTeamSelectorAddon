@@ -115,6 +115,22 @@ menu:
     team-is-full:
       enabled: true
       sound: block_anvil_place
+  team-display-names:
+    WHITE: "&fWhite"
+    ORANGE: "&6Orange"
+    PURPLE: "&5Purple"
+    RED: "&cRed"
+    BLUE: "&1Blue"
+    LIGHT_BLUE: "&9Light Blue"
+    CYAN: "&3Cyan"
+    GREEN: "&2Green"
+    YELLOW: "&eYellow"
+    PINK: "&dPink"
+    GRAY: "&8Gray"
+    LIGHT_GRAY: "&7Light Gray"
+    BROWN: "&4Brown"
+    BLACK: "&0Black"
+    LIME: "&aLight Green"
   #Available placeholders: %team%, %players%, %max%
   # %team% placeholder is REQUIRED!!!!!
   display-name: "%team% &f(%players%/%max%)"
