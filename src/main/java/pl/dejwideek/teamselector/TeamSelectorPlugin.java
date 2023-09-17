@@ -44,7 +44,7 @@ public class TeamSelectorPlugin extends JavaPlugin {
 
     private boolean mbwCheck() {
         if(Bukkit.getPluginManager().getPlugin("MBedwars") != null) {
-            final int supportedAPIVersion = 16;
+            final int supportedAPIVersion = 24;
 
             try {
                 Class apiClass = Class.forName("de.marcely.bedwars.api.BedwarsAPI");
@@ -53,7 +53,7 @@ public class TeamSelectorPlugin extends JavaPlugin {
                 if (apiVersion < supportedAPIVersion)
                     throw new IllegalStateException();
             } catch (Exception e) {
-                this.getLogger().warning("Your MBedwars version is not supported. Supported version: 5.1.1 or higher!");
+                this.getLogger().warning("Your MBedwars version is not supported. Supported version: 5.3 or higher!");
                 Bukkit.getPluginManager().disablePlugin(this);
                 return false;
             }
