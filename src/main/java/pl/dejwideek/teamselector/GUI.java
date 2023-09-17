@@ -98,7 +98,8 @@ public class GUI {
                     meta.setColor(team.getDyeColor().getColor());
                     meta.setDisplayName(colorAPI.process(itemDisplayName
                                     .replaceAll("%team%",
-                                            team.getChatColor() + team.getDisplayName())
+                                            config.getString("menu.team-display-names."
+                                                    + teamName))
                                     .replaceAll("%players%",
                                             String.valueOf(arena
                                                     .getPlayersInTeam(team).size())))
@@ -182,7 +183,7 @@ public class GUI {
 
                     meta.setDisplayName(colorAPI.process(itemDisplayName
                                     .replaceAll("%team%",
-                                            team.getChatColor() + team.getDisplayName())
+                                            team.getChatColor() + teamName)
                                     .replaceAll("%players%",
                                             String.valueOf(arena
                                                     .getPlayersInTeam(team).size())))
@@ -264,7 +265,6 @@ public class GUI {
 
                 gui.setItem(itemSlot, item);
             }
-            player.openInventory(gui);
 
             if(isFillEmptySlots) {
                 String emptyItemMaterial = config.getString(
@@ -293,6 +293,8 @@ public class GUI {
                         gui.setItem(i, emptyItem);
                 }
             }
+
+            player.openInventory(gui);
         };
         boolean found = false;
 
