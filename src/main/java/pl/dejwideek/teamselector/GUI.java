@@ -183,7 +183,8 @@ public class GUI {
 
                     meta.setDisplayName(colorAPI.process(itemDisplayName
                                     .replaceAll("%team%",
-                                            team.getChatColor() + teamName)
+                                            config.getString("menu.team-display-names."
+                                                    + teamName))
                                     .replaceAll("%players%",
                                             String.valueOf(arena
                                                     .getPlayersInTeam(team).size())))
