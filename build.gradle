@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'pl.dejwideek'
-version '1.1.0'
+version '1.1.0-HOTFIX'
 
 repositories {
     mavenCentral()
