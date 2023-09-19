@@ -59,68 +59,45 @@ public class InvClickEvent implements Listener {
                 if(!arena.equals(null)) {
                     ItemStack item = e.getCurrentItem();
                     for(Team team : arena.getEnabledTeams()) {
-                        if(item.getItemMeta().getDisplayName()
-                                .contains(colorAPI.process(config.getString(
-                                        "menu.team-display-names." + team.name())))) {
-                            int playersPerTeam = arena.getPlayersPerTeam();
-                            int playersInTeam = arena
-                                    .getPlayersInTeam(team).size();
-
-                            try {
-                                Team playerTeam = arena.getPlayerTeam(p);
-                                if(!playerTeam.equals(team)) {
-                                    if(playersInTeam == playersPerTeam) {
-                                        p.sendMessage(colorAPI.process(teamFullMsg));
-                                        if(isTeamFullSoundEnabled)
-                                            p.playSound(p.getLocation(), XSound.valueOf(
-                                                            teamFullSound).parseSound(),
-                                                    50.0f, 1.0f);
-                                    }
-                                    else {
-                                        arena.setPlayerTeam(p, team);
-                                        p.sendMessage(colorAPI.process(joinedMsg
-                                                .replaceAll("%team%",
-                                                        config.getString("menu.team-display-names."
-                                                                + team.name()))));
-                                        if(isJoinedSoundEnabled)
-                                            p.playSound(p.getLocation(), XSound.valueOf(
-                                                            joinedSound).parseSound(),
-                                                    50.0f, 1.0f);
-                                        BedwarsAPI.getGameAPI().getLobbyItemHandler(
-                                                        "better-team-selector")
-                                                .handleUse(p, arena, null);
-                                    }
+                        String teamDisplayName = config.getString("menu.team-display-names." + team.name()
+                                .replaceAll("LIGHT_GREEN", "LIME"));
+                        if (!item.getItemMeta().getDisplayName().contains(colorAPI.process(teamDisplayName))) continue;
+                        int playersPerTeam = arena.getPlayersPerTeam();
+                        int playersInTeam = arena.getPlayersInTeam(team).size();
+                        try {
+                            Team playerTeam = arena.getPlayerTeam(p);
+                            if (!playerTeam.equals((Object)team)) {
+                                if (playersInTeam == playersPerTeam) {
+                                    p.sendMessage(ColorAPI.process(teamFullMsg));
+                                    if (!isTeamFullSoundEnabled) continue;
+                                    p.playSound(p.getLocation(), XSound.valueOf(teamFullSound).parseSound(), 50.0f, 1.0f);
+                                    continue;
                                 }
-                                else {
-                                    p.sendMessage(colorAPI.process(alreadyInTeamMsg));
-                                    if(isAlreadyInTeamSoundEnabled)
-                                        p.playSound(p.getLocation(), XSound.valueOf(
-                                                        alreadyInTeamSound).parseSound(),
-                                                50.0f, 1.0f);
+                                arena.setPlayerTeam(p, team);
+                                p.sendMessage(colorAPI.process(joinedMsg.replaceAll("%team%", teamDisplayName)));
+                                if (isJoinedSoundEnabled) {
+                                    p.playSound(p.getLocation(), XSound.valueOf(joinedSound).parseSound(), 50.0f, 1.0f);
                                 }
-                            } catch (Exception ex) {
-                                if(playersInTeam == playersPerTeam) {
-                                    p.sendMessage(colorAPI.process(teamFullMsg));
-                                    if(isTeamFullSoundEnabled)
-                                        p.playSound(p.getLocation(), XSound.valueOf(
-                                                        teamFullSound).parseSound(),
-                                                50.0f, 1.0f);
-                                }
-                                else {
-                                    arena.setPlayerTeam(p, team);
-                                    p.sendMessage(colorAPI.process(joinedMsg
-                                            .replaceAll("%team%",
-                                                    config.getString("menu.team-display-names."
-                                                            + team.name()))));
-                                    if(isJoinedSoundEnabled)
-                                        p.playSound(p.getLocation(), XSound.valueOf(
-                                                        joinedSound).parseSound(),
-                                                50.0f, 1.0f);
-                                    BedwarsAPI.getGameAPI().getLobbyItemHandler(
-                                                    "better-team-selector")
-                                            .handleUse(p, arena, null);
-                                }
+                                BedwarsAPI.getGameAPI().getLobbyItemHandler("better-team-selector").handleUse(p, arena, null);
+                                continue;
                             }
+                            p.sendMessage(colorAPI.process(alreadyInTeamMsg));
+                            if (!isAlreadyInTeamSoundEnabled) continue;
+                            p.playSound(p.getLocation(), XSound.valueOf(alreadyInTeamSound).parseSound(), 50.0f, 1.0f);
+                        }
+                        catch (Exception ex) {
+                            if (playersInTeam == playersPerTeam) {
+                                p.sendMessage(colorAPI.process(teamFullMsg));
+                                if (!isTeamFullSoundEnabled) continue;
+                                p.playSound(p.getLocation(), XSound.valueOf(teamFullSound).parseSound(), 50.0f, 1.0f);
+                                continue;
+                            }
+                            arena.setPlayerTeam(p, team);
+                            p.sendMessage(colorAPI.process(joinedMsg.replaceAll("%team%", teamDisplayName)));
+                            if (isJoinedSoundEnabled) {
+                                p.playSound(p.getLocation(), XSound.valueOf(joinedSound).parseSound(), 50.0f, 1.0f);
+                            }
+                            BedwarsAPI.getGameAPI().getLobbyItemHandler("better-team-selector").handleUse(p, arena, null);
                         }
                     }
                 }
